@@ -22,12 +22,12 @@
     <groupId>com.cloudbees</groupId>
     <artifactId>cloudbees-oss-parent</artifactId>
     <version>7</version>
-    <relativePath/>
+    <relativePath />
   </parent>
 
   <groupId>com.cloudbees.maven.release</groupId>
   <artifactId>cloudbee-maven-release-version-policy</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0</version>
 
   <name>CloudBees Maven Release Version Policy</name>
 
@@ -35,7 +35,7 @@
     <connection>scm:git:git://github.com/CloudBees-community/cloudbees-maven-release-version-policy.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/CloudBees-community/cloudbees-maven-release-version-policy.git</developerConnection>
     <url>http://github.com/CloudBees-community/cloudbees-maven-release-version-policy/tree/master/</url>
-    <tag>HEAD</tag>
+    <tag>cloudbee-maven-release-version-policy-1.0</tag>
   </scm>
 
   <dependencies>
