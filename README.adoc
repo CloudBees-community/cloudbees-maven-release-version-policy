@@ -1,0 +1,26 @@
+= CloudBees Maven Release Version Policy
+
+Are you fed up of the recent changes in the Maven release plugin where it increments segments that are not the smallest?
+
+Have you been bitten by things like `1.8.0-1.7.1-alpha-1 -> 1.8.0-2.7.1-alpha-1`?
+
+If the answer is yes, then we have the solution:
+
+```xml
+<plugin>
+  <artifactId>maven-release-plugin</artifactId>
+  <version>2.5.3</version>
+  <configuration>
+    <projectVersionPolicyId>cloudbees</projectVersionPolicyId>
+  </configuration>
+  <dependencies>
+    <dependency>
+      <groupId>com.cloudbees.maven.release</groupId>
+      <artifactId>cloudbee-maven-release-version-policy</artifactId>
+      <version>1.0</version>
+    </dependency>
+  </dependencies>
+</plugin>
+```
+
+Problem solved!
