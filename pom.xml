@@ -27,7 +27,7 @@
 
   <groupId>com.cloudbees.maven.release</groupId>
   <artifactId>cloudbee-maven-release-version-policy</artifactId>
-  <version>2.0</version>
+  <version>2.1-SNAPSHOT</version>
 
   <name>CloudBees Maven Release Version Policy</name>
 
@@ -35,7 +35,7 @@
     <connection>scm:git:git://github.com/CloudBees-community/cloudbees-maven-release-version-policy.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/CloudBees-community/cloudbees-maven-release-version-policy.git</developerConnection>
     <url>http://github.com/CloudBees-community/cloudbees-maven-release-version-policy/tree/master/</url>
-    <tag>cloudbee-maven-release-version-policy-2.0</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <dependencies>
