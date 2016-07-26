@@ -56,11 +56,21 @@ public class CloudBeesVersionPolicy implements VersionPolicy {
             throws PolicyException, VersionParseException {
         // this one is harder, we basically want to find the last incrementally updatable segment and bump it
         final VersionPolicyResult result = new VersionPolicyResult();
-        final String version = versionPolicyRequest.getVersion();
+        String version = versionPolicyRequest.getVersion();
         if (version.endsWith("-SNAPSHOT")) {
             // if it is a -SNAPSHOT already, we shouldn't have been called, so we leave the value as is
             result.setVersion(version);
         } else {
+            // find the first version format string (using "-" as separator)
+            String [] comps = version.split("-");
+            String externalRef = "";
+            if (comps.length > 1 
+                    && !(version.contains("alpha") || version.contains("ALPHA") || version.contains("beta") || version.contains("BETA"))) {
+                version = comps[0];
+                for (int i = 1; i < comps.length; i++) {
+                    externalRef += "-" + comps[i];
+                }
+            }
             // find the last numeric segment and increment that
             Pattern separator = Pattern.compile("([\\.-])");
             Matcher m = separator.matcher(version);
@@ -80,6 +90,7 @@ public class CloudBeesVersionPolicy implements VersionPolicy {
                     result.setVersion(version.substring(0, offsets.get(i))
                             + new BigInteger(segment).add(BigInteger.ONE).toString()
                             + version.substring(offsets.get(i + 1))
+                            + externalRef
                             + "-SNAPSHOT");
                     matched = true;
                     break;

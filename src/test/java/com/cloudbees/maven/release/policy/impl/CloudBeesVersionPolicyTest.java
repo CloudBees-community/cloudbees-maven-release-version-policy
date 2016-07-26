@@ -56,7 +56,10 @@ public class CloudBeesVersionPolicyTest {
 
     @Test
     public void mixedDigitVersions() throws Exception {
-        assertThat(instance.getDevelopmentVersion(request("1.2-3.4")).getVersion(), is("1.2-3.5-SNAPSHOT"));
+        assertThat(instance.getDevelopmentVersion(request("1.2-3.4")).getVersion(), is("1.3-3.4-SNAPSHOT"));
+        assertThat(instance.getDevelopmentVersion(request("1.2-3.4-alpha-1")).getVersion(), is("1.2-3.4-alpha-2-SNAPSHOT"));
+        assertThat(instance.getDevelopmentVersion(request("1.2-3.4-alpha")).getVersion(), is("1.2-3.4-beta-1-SNAPSHOT"));
+        assertThat(instance.getDevelopmentVersion(request("1.2-3.4-beta")).getVersion(), is("1.2-3.4-rc-1-SNAPSHOT"));
     }
 
     @Test(expected = VersionParseException.class)
@@ -89,6 +92,7 @@ public class CloudBeesVersionPolicyTest {
                 d("1.8.0-alpha-SNAPSHOT", "1.8.0-alpha", "1.8.0-beta-1-SNAPSHOT"),
                 d("1.8.0.alpha-SNAPSHOT", "1.8.0.alpha", "1.8.0.beta.1-SNAPSHOT"),
                 d("1.8.0-1.7.1.0-alpha-1-SNAPSHOT", "1.8.0-1.7.1.0-alpha-1", "1.8.0-1.7.1.0-alpha-2-SNAPSHOT"),
+                d("1.8.0-1.7.1.0-SNAPSHOT", "1.8.0-1.7.1.0", "1.8.1-1.7.1.0-SNAPSHOT"),
         };
     }
 
